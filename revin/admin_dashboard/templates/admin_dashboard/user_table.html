@@ -1,0 +1,43 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% block content %}
+<table class="table table-boderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email Address</td>
+            <td>Password</td>
+            <td>
+                <a href="{% url 'user_insert' %}" class="btn btn-success">
+                    <i class="fa-solid fa-plus"></i> Add
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in table %}
+        <tr>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email_address}}</td>
+            <td>{{user.password}}</td>
+            <td>
+                <a href="{% url 'user_update' user.id %}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </td>
+            <td>
+                <form action="{% url 'user_delete' user.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        <i class="fa-solid fa-trash"></i> delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
+

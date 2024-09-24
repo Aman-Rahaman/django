@@ -1,0 +1,21 @@
+{% extends "admin_dashboard/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    {{form|crispy}}
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fa-regular fa-floppy-disk"></i> Success</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'user_table' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fa-solid fa-arrow-left"></i> Back To Table
+            </a>
+        </div>
+    </div>
+    
+</form>
+
+{% endblock content %}
